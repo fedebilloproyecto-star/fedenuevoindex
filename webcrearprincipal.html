@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma espectacular · gratis & premium</title>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    background: linear-gradient(145deg, #0b0c1e 0%, #1a1f35 100%);
+    
+   border-radius: 10px;
+  max-width: 1200px;
+  margin: 90px auto;
+}
+
+        /* Tarjeta principal con efecto cristal/neón */
+        .site-container {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(10, 15, 30, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff00c3, #7000ff, #00f7ff, #ffb800) 1;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.7), 0 0 0 2px rgba(255, 0, 255, 0.3) inset, 0 0 30px #8a2be2;
+            overflow: hidden;
+        }
+
+        /* ENCABEZADO ESPECTACULAR */
+        .header {
+            background: linear-gradient(120deg, #240046, #3c096c, #5a189a, #7b2cbf, #9d4edd);
+            padding: 2rem 3rem;
+            text-align: center;
+            border-bottom: 4px solid #ffbd00;
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 15px, transparent 15px, transparent 30px);
+            animation: shine 18s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(50px,50px); }
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff8bb, #ffe600, #ffb347, #ff9f1c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+         
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            color: #f0e9ff;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffb3ff;
+            box-shadow: 0 0 20px violet;
+        }
+
+        /* BOTONES GRATIS / PREMIUM */
+        .button-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px 20px 30px;
+            background: radial-gradient(circle at 20% 30%, #16213e, #0f0f23);
+        }
+
+        .btn {
+            border: none;
+            padding: 22px 60px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 80px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            letter-spacing: 2px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border: 3px solid transparent;
+            text-decoration: none;
+        }
+
+        .btn-gratis {
+            background: linear-gradient(145deg, #00c9b6, #00a1ab, #0072a3);
+            color: #0b1f2e;
+            text-shadow: 0 2px 5px #a0f0ff;
+            border-color: #b5fffc;
+            box-shadow: 0 0 30px #0ff, 0 10px 20px #005a5a;
+        }
+
+        .btn-gratis:hover {
+            transform: scale(1.08);
+            background: linear-gradient(145deg, #00ffe1, #00b8d4, #0088cc);
+            box-shadow: 0 0 50px cyan, 0 15px 30px #004d66;
+        }
+
+        .btn-premium {
+            background: linear-gradient(145deg, #ffb347, #ff7e5f, #f64f59, #d43f8d);
+            color: #1f002b;
+            text-shadow: 0 2px 8px gold;
+            border-color: #ffeaa5;
+            box-shadow: 0 0 30px #ff69b4, 0 10px 25px #a1006b;
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.08) rotate(1deg);
+            background: linear-gradient(145deg, #ffcc66, #ff9966, #ff6b8b, #ff5eaa);
+            box-shadow: 0 0 60px fuchsia, 0 0 90px orange;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px 30px;
+            gap: 30px;
+            background: rgba(22, 10, 45, 0.7);
+            backdrop-filter: blur(5px);
+            border-top: 2px dashed #ff66b2;
+            border-bottom: 2px dashed #aa80ff;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            background: rgba(5, 5, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border: 3px solid;
+            border-radius: 40px;
+            padding: 30px 25px;
+            color: white;
+            box-shadow: 10px 10px 25px #00000080;
+        }
+
+        .card-gratis {
+            border-color: #0ff #0ff #f0f #f0f;
+        }
+
+        .card-premium {
+            border-color: #ffd966 #ffb347 #ff69b4 #b266ff;
+        }
+
+        .card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid currentColor;
+            padding-bottom: 15px;
+        }
+
+        .card-gratis h2 { color: #7affea; text-shadow: 0 0 15px blue; }
+        .card-premium h2 { color: #ffdb8e; text-shadow: 0 0 15px rgb(255, 0, 255); }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: rgba(255,255,255,0.03);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border-left: 5px solid;
+        }
+
+        .card-gratis .feature-list li { border-left-color: #0ff; }
+        .card-premium .feature-list li { border-left-color: #ffa500; }
+
+        .feature-list i {
+            font-size: 1.8rem;
+            min-width: 35px;
+            color: gold;
+        }
+
+        .small-note {
+            font-size: 1rem;
+            color: #cfb3ff;
+            margin-top: 15px;
+            font-style: italic;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+
+        .premium-badge {
+            background: #ffd966;
+            color: #2d0033;
+            font-weight: bold;
+            padding: 3px 15px;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+
+        /* SERVICIOS ADICIONALES PREMIUM */
+        .extra-premium {
+            background: linear-gradient(95deg, #1a1a2e, #16213e, #1f1d3b);
+            padding: 40px 30px;
+            border-top: 3px solid #ff44b4;
+            border-bottom: 3px solid #b266ff;
+        }
+
+        .extra-premium h3 {
+            font-size: 2.2rem;
+            color: #fee7a0;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px violet, 2px 2px 0 #000;
+            background: rgba(128,0,255,0.2);
+            display: inline-block;
+            padding: 10px 50px;
+            border-radius: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffb3d9;
+        }
+
+        .service-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .service-item {
+            background: rgba(70, 20, 120, 0.4);
+            backdrop-filter: blur(4px);
+            border: 2px solid #ffa6c9;
+            border-radius: 40px;
+            padding: 18px 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 0 25px magenta;
+            transition: 0.15s;
+            flex: 1 0 180px;
+            justify-content: center;
+        }
+
+        .service-item i {
+            font-size: 2rem;
+            color: #ffdf8c;
+        }
+
+        .service-item:hover {
+            background: #aa50ff70;
+            border-color: yellow;
+            transform: translateY(-5px);
+        }
+
+        /* PIE DE PÁGINA */
+        .footer {
+            background: #0c0029;
+            padding: 35px 30px;
+            text-align: center;
+            border-top: 6px solid transparent;
+            border-image: repeating-linear-gradient(90deg, #ff00c8, #7700ff, #00e0ff, #ffbb00, #ff00c8) 30;
+            box-shadow: 0 -10px 35px #b266ff;
+            color: #e0d7ff;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, gold, cyan);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-info p {
+            font-size: 1.2rem;
+            background: #24004680;
+            padding: 5px 25px;
+            border-radius: 40px;
+            border: 1px solid #ff99ff;
+        }
+
+        .footer-bottom {
+            font-size: 1.3rem;
+            border-top: 1px dashed #b180ff;
+            padding-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            color: #bbd9ff;
+        }
+
+        .footer-bottom span {
+            background: #3c0064;
+            padding: 6px 20px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #ffa78a;
+        }
+
+        .footer a {
+            color: #ffd966;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px dotted #ff70b0;
+        }
+
+        .footer a:hover {
+            color: white;
+            border-bottom: 2px solid cyan;
+        }
+
+        /* BOTÓN VOLVER ATRÁS */
+        .back-button {
+            text-align: left;
+            margin: 15px 0 0 20px;
+        }
+        .back-link {
+            background: #1f1a4b;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #bc8cff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .back-link:hover {
+            background: #413a7a;
+            border-color: #ffd966;
+            box-shadow: 0 0 30px lightblue;
+        }
+
+        @media (max-width: 700px) {
+            .header h1 { font-size: 2.2rem; }
+            .btn { font-size: 1.6rem; padding: 18px 30px; }
+        }
+
+
+
+        table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezado de la tabla con degradado */
+table thead th {
+    background: linear-gradient(145deg, #0b0c1e 0%, #1a1f35 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+}
+
+/* Evitar márgenes que rompan el fondo */
+table thead th p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Filas normales */
+table tbody td {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px;
+}
+
+/* Márgenes de párrafos dentro de celdas */
+table tbody td p {
+    margin: 0 0 10px 0;
+}
+/* Estilo del botón premium */
+.btn-premium {
+  display: inline-block;
+  background-color: #f1c40f; /* dorado */
+  color: #fff; /* texto blanco */
+  font-size: 16px; /* tamaño mediano */
+  font-weight: bold;
+  padding: 10px 20px; /* espacio dentro del botón */
+  border-radius: 8px; /* bordes redondeados */
+  text-decoration: none; /* quitar subrayado */
+  transition: all 0.3s ease; /* transición suave */
+  cursor: pointer;
+}
+
+/* Efecto al pasar el cursor */
+.btn-premium:hover {
+  background-color: #d4ac0d; /* dorado más oscuro */
+  transform: scale(1.05); /* ligero aumento */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Icono dentro del botón */
+.btn-premium i {
+  margin-right: 8px; /* espacio entre icono y texto */
+}
+    </style>
+</head>
+  <!-- BOTÓN VOLVER ATRÁS -->
+            <div class="back-button">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> VOLVER ATRÁS</a>
+            </div>
+
+
+
+
+
+<body>
+    <div class="site-container">
+
+
+        <!-- ENCABEZADO ESPECTACULAR -->
+        <header class="header">
+            <h1> CREA TU SITIO WEB  HAY VERSION GRATIS(PERSONALIZADO) O PREMIUM(TIENE QUE PAGAR)</h1>
+        
+        </header>
+<table >
+    <tr >
+        <td>
+            <p style="margin: 0; font-weight: bold; font-size: 18px;">Explicacion del servicios</p>
+    
+          
+
+          <p style="margin: 0;">
+         Este servicio está dirigido a cualquier persona que quiera hacer publicidad, incluyendo profesionales como: profesores de matemáticas, biología, química, educación física; psicólogos; abogados; médicos y médicas; ingenieros civiles; automecánicos, entre otros.
+Cualquiera puede acceder al servicio en versión gratuita o premium. La versión premium tiene un costo y dura un año. Para usarla, el usuario debe leer y seguir las instrucciones; una vez cumplidas, el administrador revisará la solicitud y publicará el contenido en el sitio web deseado por el cliente que pago el servicio. 
+</p> 
+<p>
+La versión gratuita, en cambio, no tiene costo, ya que está diseñada para clientes que ya saben cómo publicar en internet usando su propio hosting o dominio, es decir, quienes saben cómo publicar
+que hicieron la carrera o curso de pogramacion que son la persona como el hombre y tambien la mujeres adulta, jovenes adolecentes y hasta menores de edades.
+ 
+</p>
+<p>
+    Y los que van a querer la versión premium son muchos que hablan sin conocimientos o inventan cosas, incluso chismes, hablando sin fundamentos; es decir, tienen una enfermedad que sera un virus en la salud mental  por sus chismes y están muy equivocados, por eso aceptarán la versión premium. Esto incluye periodistas, periodísticas, profesores de básquet, fútbol u otros deportes, hasta algunos profesores de educación física, matemáticas, química o biología, empleados de supermercado o kiosco, y personas dedicadas al diseño, las artes, hacer dibujos en la pared, la arquitectura de casas y muchos otros campos que no estudiaron la carrera ni hicieron cursos de programación.
+</p>
+       
+    </td>
+    </tr>
+    <tr>
+        
+</table>
+        <!-- BOTONES GRATIS & PREMIUM -->
+        <div class="button-bar">
+            <a href="versiongratiswebcrea.html" class="btn btn-gratis"><i class="fas fa-globe"></i> GRATIS</a>
+            <a href="versionpremiumcreaweb.html" class="btn btn-premium"><i class="fas fa-crown"></i> PREMIUM</a>
+        </div>
+
+        <!-- CONTENIDO DESCRIPTIVO -->
+        <div class="main-content">
+            <!-- COLUMNA GRATIS -->
+            <div class="card card-gratis">
+                <h2><i class="fas fa-rocket" style="color: #0ff;"></i> Versión Gratis</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle" style="color: #2effb2;"></i> <strong>Con solo hacer clic</strong> se crea un sitio web personalizado.</li>
+                    <li><i class="fas fa-user-check"></i> <strong>El usuario ya sabe cómo publicar</strong> el sitio web en Internet.
+                  
+                    
+                    </li>
+                   
+                    <li><i class="fas fa-paint-roller" style="color: #ffb87c;"></i> <strong> El usuario ya tiene su propio</strong> dominio y hosting que sabe publicar en internet. </li>
+                </ul>
+                <div class="small-note">
+                    <i class="fas fa-lightbulb"></i> El usuario administra su publicación.
+                </div>
+            </div>
+
+            <!-- COLUMNA PREMIUM -->
+            <div class="card card-premium">
+                <h2><i class="fas fa-gem" style="color: gold;"></i> Versión Premium <span class="premium-badge">+ MARKETING</span></h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-clipboard-list"></i> <strong>Muy bien explicada:</strong> instrucciones detalladas.</li>
+                    <li><i class="fas fa-user-tie"></i> <strong>El administrador</strong> se encarga de crear el sitio web completo con toda la información correspondiente.</li>
+                    <li><i class="fas fa-exclamation-triangle" style="color: #ffd966;"></i> <strong>Importante:</strong> leer y prestar mucha atención a las instrucciones.</li>
+                    <li><i class="fas fa-chrome"></i> <strong>Publicado en:</strong> Google Chrome, Microsoft Edge y otros navegadores.</li>
+                    
+                    <li><i class="fas fa-clock"></i> <strong>Duración 1 año:</strong> la creación del sitio web y la publicidad tienen una duración de 1 año. Después de ese período, el servicio debe renovarse para que el sitio siga activo en Internet y continúe apareciendo en los navegadores y en las campañas de publicidad.</li>
+                </ul>
+                <div class="small-note">
+                    <i class="fas fa-star"></i> Requiere leer atentamente las instrucciones.
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICIOS ADICIONALES PREMIUM -->
+        <div class="extra-premium">
+            <h3><i class="fas fa-paint-brush"></i> SERVICIOS PREMIUM ADICIONALES <i class="fas fa-palette"></i></h3>
+            <p style="text-align: center; color: #ffd966; font-size: 1.4rem; margin-bottom: 25px;">
+                <i class="fas fa-exclamation-circle"></i> Para acceder a otro servicio premium, este se cobra aparte y tiene un precio diferente.
+           <a href="premiuminicio.html" class="btn btn-premium">
+  <i class="fas fa-crown"></i> Destacado (accede al otro servicio premium)
+</a>
+
+            </p>
+            <div class="service-grid">
+                <div class="service-item"><i class="fas fa-ad"></i> Crear anuncios y publicidad</div>
+                <div class="service-item"><i class="fas fa-draw-polygon"></i> Ejemplo de dibujo avanzado</div>
+                <div class="service-item"><i class="fas fa-pen-fancy"></i> Crear tu dibujo avanzado</div>
+                <div class="service-item"><i class="fas fa-star"></i> Ejemplo de logo</div>
+                <div class="service-item"><i class="fas fa-crown"></i> Crear tu logo profesional</div>
+                <div class="service-item"><i class="fas fa-video"></i> Ejemplo de foto a video</div>
+                <div class="service-item"><i class="fas fa-image"></i> Foto a video</div>
+                <div class="service-item"><i class="fas fa-couch"></i> Ejemplo de decoración</div>
+                <div class="service-item"><i class="fas fa-paint-roller"></i> Decoraciones</div>
+               
+                
+            </div>
+        
+        </div>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="footer">
+            <div class="footer-top">
+                <span class="footer-logo"><i class="fas fa-globe"></i> Contrata al sombrero blanco</span>
+                <div class="footer-info">
+                  
+                </div>
+                <span style="display: flex; gap: 10px;">
+                    <i class="fab fa-chrome" style="color: cyan; font-size: 2rem;"></i>
+                    <i class="fab fa-edge" style="color: deepskyblue; font-size: 2rem;"></i>
+                    <i class="fas fa-bolt" style="color: gold; font-size: 2rem;"></i>
+                </span>
+            </div>
+
+          
+
+    
+        </footer>
+    </div>
+</body>
+</html>

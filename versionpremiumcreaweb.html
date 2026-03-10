@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>Mensaje Premium CSS</title>
+<style>
+    body, html {
+        margin: 0;
+        min-height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+        background: #123198;
+        
+    }
+
+    .slider {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 2.5s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    /* FONDOS PREMIUM */
+    .slide1 {
+        background: radial-gradient(circle at 30% 40%, #2a5f7a, #0f2c3a 80%),
+                    linear-gradient(145deg, #3b8da0, #1b4b5e);
+        background-blend-mode: overlay;
+        position: relative;
+    }
+    
+    .slide1::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 223, 150, 0.25) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .slide2 {
+        background: radial-gradient(circle at 80% 20%, #e09a7a, #b8432e 70%),
+                    linear-gradient(215deg, #ffaa7a, #c05a3a);
+        background-blend-mode: hard-light;
+        position: relative;
+    }
+    
+    .slide2::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 80%, rgba(255, 255, 180, 0.3) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .slide3 {
+        background: conic-gradient(from 120deg at 40% 50%, #2a9d8f, #48c9b0, #1e6f5c, #2a9d8f),
+                    linear-gradient(135deg, #1e7a6c, #3ab7a0);
+        background-blend-mode: screen;
+        position: relative;
+    }
+    
+    .slide3::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 60% 70%, rgba(200, 255, 220, 0.3) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* PARTÍCULAS DORADAS */
+    .slide::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 35%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 75% 65%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 45% 85%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 85% 15%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 15% 55%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+            radial-gradient(circle at 55% 25%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+            radial-gradient(circle at 95% 45%, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+        background-size: 250px 250px, 250px 250px, 250px 250px, 250px 250px, 150px 150px, 150px 150px, 150px 150px;
+        background-repeat: repeat;
+        pointer-events: none;
+        animation: sparkle 12s linear infinite;
+    }
+
+    @keyframes sparkle {
+        0% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+        100% { background-position: 250px 250px, 250px 250px, 250px 250px, 250px 250px, 150px 150px, 150px 150px, 150px 150px; }
+    }
+
+    /* TARJETA PRINCIPAL */
+    .card {
+        position: relative;
+        max-width: 900px;
+        margin: 90px auto;
+        background: linear-gradient(145deg, rgba(10, 15, 20, 0.85), rgba(20, 25, 30, 0.92));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        color: #fff;
+        padding: 40px 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7),
+                   0 0 0 1px rgba(255, 215, 0, 0.15) inset;
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+    /* MEDIA QUERIES PARA MÓVILES */
+    @media (max-width: 768px) {
+        .card {
+            margin: 50px auto;
+            padding: 30px 20px;
+            width: 92%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            margin: 30px auto;
+            padding: 25px 15px;
+            width: 94%;
+        }
+    }
+
+    .card p {
+        font-size: 1.2em;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+        font-weight: 400;
+        letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 600px) {
+        .card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .card p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+    }
+
+    .card p:first-of-type {
+        font-weight: 600;
+        color: #ffffff;
+        font-size: 1.3em;
+        background: linear-gradient(135deg, #fff, #ffe6b0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    @media (max-width: 600px) {
+        .card p:first-of-type {
+            font-size: 1.2em;
+        }
+    }
+
+    .card p:last-of-type {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2em;
+        font-style: italic;
+        border-left: 3px solid rgba(255, 215, 0, 0.3);
+        padding-left: 20px;
+        text-align: left;
+        margin-top: 25px;
+    }
+
+    @media (max-width: 600px) {
+        .card p:last-of-type {
+            font-size: 1.1em;
+            padding-left: 15px;
+        }
+    }
+
+    /* CONTENEDOR DE BOTONES */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* ESTILOS PARA AMBOS BOTONES */
+    .btn {
+        border: none;
+        padding: 16px 35px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.5s ease;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        min-width: 220px;
+        margin: 5px 0;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    @media (max-width: 480px) {
+        .btn {
+            padding: 14px 25px;
+            font-size: 1em;
+            min-width: 180px;
+        }
+    }
+
+    /* BOTÓN VOLVER */
+    .btn-volver {
+        background: linear-gradient(135deg, #d94a2b, #f0b37b, #d94a2b);
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        box-shadow: 0 15px 30px -5px rgba(0,0,0,0.6),
+                   0 0 0 1px rgba(255, 215, 0, 0.3) inset;
+    }
+
+    /* BOTÓN WHATSAPP */
+    .btn-whatsapp {
+        background: linear-gradient(135deg, #25D366, #128C7E, #25D366);
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        box-shadow: 0 15px 30px -5px rgba(0,0,0,0.6),
+                   0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.7s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn:hover {
+        transform: scale(1.05) translateY(-2px);
+    }
+
+    .btn-volver:hover {
+        box-shadow: 0 20px 40px -5px rgba(0,0,0,0.8),
+                   0 0 0 1px rgba(255, 215, 0, 0.5) inset;
+    }
+
+    .btn-whatsapp:hover {
+        box-shadow: 0 20px 40px -5px rgba(0,0,0,0.8),
+                   0 0 0 1px rgba(37, 211, 102, 0.5) inset;
+    }
+
+    /* BORDE DECORATIVO */
+    .card::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 1px solid rgba(255, 215, 0, 0.15);
+        border-radius: 5px;
+        pointer-events: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="slider">
+    <div class="slide slide1 active"></div>
+    <div class="slide slide2"></div>
+    <div class="slide slide3"></div>
+</div>
+
+<div class="card">
+  <!-- CONTENEDOR CON DOS BOTONES -->
+    <div class="button-container">
+        <button class="btn btn-volver" onclick="window.location.href='webcrearprincipal.html'">Volver atrás</button>
+       
+    </div>
+<p>
+    Señores usuarios: si desean hacer publicidad propia, soliciten que el administrador la publique en el sitio web oficial. Solo se aceptará contenido coherente, digno y adecuado para cualquier plataforma como sitios web, Facebook, Instagram o Twitter. Todo debe cumplir con principios de legalidad, respeto educativo y responsabilidad social, sin juzgar ni discriminar a nadie.
+Para solicitar su publicidad, deben enviar un archivo en Word explicando cómo desean que sea su sitio web de publicidad. Deben indicar el color primario que desean usar, dónde irá su logotipo y si quieren bordes de colores. También deben especificar cuántos botones desean en el menú. Cada botón necesita un nombre, como por ejemplo: Inicio, Productos, Bienvenida y Contactos.
+
+</p>
+<p>
+    En la sección Productos se mostrarán los productos o servicios que ofrecen. En Bienvenida se podrá colocar el contenido principal o la descripción de su negocio. En Contactos se incluirá una breve descripción junto con los enlaces a sus redes sociales, como Facebook, Instagram, Twitter, WhatsApp o Telegram.
+El color secundario se utilizará como efecto visual cuando se presione o se pase el cursor sobre los botones. Por ejemplo, si el botón es blanco, puede aparecer un reflejo o sombreado en color celeste.
+En el logo deben indicar qué nombre desean que aparezca o enviar su propio logotipo, ya sea de su empresa, emprendimiento o negocio personal, porque el administrador no crea ni diseña logos para cada persona.
+
+</p>
+<p>
+    La versión premium funciona de forma básica, pero incluye que el administrador pueda publicar su sitio web directamente en Google Chrome, Microsoft Edge o cualquier navegador, incluso no sabe manejar un hosting. Antes de publicar, el administrador compartirá un enlace de demostración en GitHub para que el usuario revise cómo quedó el sitio. Si todo está correcto y se confirma, cuando el usuario paga el pago al administrador pondrá el sitio en un hosting que estará en internet con una buena seguridad protegida en el ámbito digital. 
+El administrador, Sombrero Blanco, pagará el hosting en SiteGround. El usuario le pagará al administrador, que contrató el servicio en SiteGround, pero el administrador cobrará un precio mucho más bajo, ofreciendo muy buena relación calidad precio al usuario que visita el sitio web del Sombrero Blanco.
+
+</p>
+<p>
+    Si GitHub no envía el aviso al administrador y el usuario cliente no responde en 2 días, se considerará que el registro fue solo para usar el servicio sin pagar. Su acceso se eliminará automáticamente después de 2 días por falta de confirmación. En la vida, nada es gratis. Si pasan más de 2 días, el sitio web en GitHub será eliminado.Solo mande en el Word su nombre y apellido, el número de celular, de qué provincia , la localidad y el dni. Solo aceptamos personas de Argentina, no de otros países. El idioma debe ser español, porque no sabemos interpretar ni hablar otros idiomas y no vamos a entender. Esto es para identificar quién envió el registro, así el administrador no se va a confundir si el servicio está pago o no. Además, ese registro que envía se colocará en un cuadro comparativo con los que pagaron, para mantener el orden y evitar confusiones hasta las equivocaciones.  Aclaración: no envíe el sobre con el año, día o semana de nacimiento. No envíe ningún otro dato personal, porque no nos interesa.
+</p>
+<p>
+    Aclaración importante: es responsabilidad del usuario mantener actualizado su número de celular. Si cambia el número de celular, deberá avisar desde el número viejo informando cuál será el número nuevo al administrador, que se llama El Sombrero Blanco. De esa manera se podrá actualizar el registro.El mensaje debe enviarse de la siguiente manera: Hola, voy a tener un nuevo número de celular. Mi número nuevo es: (número nuevo). Mi nombre y apellido es: (nombre y apellido). Soy de la provincia de: (provincia) y de la localidad de: (localidad). Mi DNI es: (número de DNI). De esta manera el administrador podrá actualizar el registro y evitar confusiones.Si el usuario cambia su número de celular y no envía el número nuevo, el administrador El Sombrero Blanco no aceptará engaños ni trampas, ya que esto se considerará un posible fraude.El registro en el cuadro comparativo detectará que el usuario no figura correctamente, porque el número celular antiguo no fue actualizado. Aunque el usuario proporcione su DNI, nombre y apellido, el sistema podría sospechar que se trata de un caso de suplantación de identidad, por lo que siempre es necesario avisar al administrador del cambio. Esto garantiza el cumplimiento de la Ley 25.326 de Protección de los Datos Personales y respeta los derechos del administrador según la misma ley, así como la Ley de Propiedad Intelectual.
+</p>
+<p>
+    Además, cuando pasa un año desde la publicación en el sitio web, el anuncio del usuario se elimina automáticamente si no se ha realizado el pago correspondiente nuevamente.
+Aclaración: los usuarios no estarán protegidos por la Ley 25.326 si difunden contenido sensible, como enlaces a videos o fotos íntimas. Este tipo de contenido no será aceptado ni publicado. Por lo tanto, estimados usuarios, no envíen ese tipo de material, ya que no será publicado ni tolerado.
+
+</p>
+  
+</div>
+
+<!-- SIN SCRIPT SEPARADO - TODO EN LINEA -->
+
+</body>
+</html>
