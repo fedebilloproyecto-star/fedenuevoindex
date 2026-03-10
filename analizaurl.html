@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de IP y URL</title>
+    <style>
+        /* Fondo tipo paisaje */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to top, #a8edea, #fed6e3); 
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.95);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2a7f62;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 2px solid #eef2f3;
+            border-radius: 12px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #2a7f62;
+        }
+
+        .card h3 {
+            color: #1e5c48;
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            min-height: 70px;
+        }
+
+        button {
+            padding: 14px;
+            background-color: #2a7f62;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e5c48;
+        }
+
+        .back-btn {
+            background-color: #555;
+            max-width: 200px;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #333;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 25px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Centro de Geolocalización</h1>
+        
+        <div class="cards-container">
+            <div class="card">
+                <h3>Análisis por IP</h3>
+                <p>Ingresa una dirección IP para obtener su ubicación exacta, localidad, región y país de origen.</p>
+                <button onclick="window.location.href='analizamonitoreoip.html'"> Analiza tu IP que es sospechosa </button>
+            </div>
+
+            <div class="card">
+                <h3>Análisis por URL</h3>
+                <p>Analiza el servidor detrás de una URL para identificar su IP asociada, pais y localidad.</p>
+                <button onclick="window.location.href='laurldelanalisis.html'">Analiza la  URL que es sospechoso </button>
+            </div>
+        </div>
+
+        <hr>
+
+        <button class="back-btn" onclick="window.location.href='index.html'">← Volver Atrás</button>
+    </div>
+
+</body>
+</html>

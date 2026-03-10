@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio Cuadrado · Track player · Edición completa (Partes 1‑20)</title>
+    <!-- Fuente limpia y moderna -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- RESET + VARIABLES ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo con textura sutil y gradiente */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 15% 30%, rgba(0,0,0,0.03) 0%, transparent 30%),
+                radial-gradient(circle at 85% 70%, rgba(0,0,0,0.03) 0%, transparent 30%),
+                linear-gradient(145deg, #b6ae1a 0%, #25926f 100%);
+            z-index: -2;
+        }
+
+        /* ---------- CONTENEDOR PRINCIPAL (cuadrado puro) ---------- */
+        .player {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 3px solid #0a0a0a;
+            box-shadow: 14px 14px 0 rgba(0,0,0,0.1);
+            padding: 40px 36px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* esquinas de acento (cuadradas, por supuesto) */
+        .corner {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            border: 3px solid #0a0a0a;
+            z-index: 2;
+        }
+        .corner-tl { top: -12px; left: -12px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -12px; right: -12px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -12px; left: -12px; border-right: none; border-top: none; }
+        .corner-br { bottom: -12px; right: -12px; border-left: none; border-top: none; }
+
+        /* ---------- HEADER (título + portada) ---------- */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 48px;
+            padding: 20px 28px;
+            background: rgba(255,255,255,0.5);
+            border: 3px solid #0a0a0a;
+        }
+
+        .cover {
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            border: 3px solid #0a0a0a;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .cover:hover {
+            transform: scale(1.02);
+        }
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info {
+            flex: 1;
+        }
+        .info h1 {
+            font-size: 3.2rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+            line-height: 1;
+            color: #0a0a0a;
+            border-left: 6px solid #0a0a0a;
+            padding-left: 16px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        /* ---------- GRID DE TARJETAS (ahora para 20 tracks) ---------- */
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin: 48px 0 40px;
+        }
+
+        /* cada track card */
+        .track-card {
+            background: #ffffff;
+            border: 3px solid #0a0a0a;
+            padding: 20px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.08);
+            transition: 0.15s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .track-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 14px 14px 0 rgba(0,0,0,0.12);
+        }
+
+        .track-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 3px solid #0a0a0a;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.05);
+        }
+        .track-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.25s;
+        }
+        .track-card:hover .track-img img {
+            transform: scale(1.08);
+        }
+
+        .track-info {
+            margin-bottom: 14px;
+        }
+        .track-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            border-left: 4px solid #0a0a0a;
+            padding-left: 8px;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+        .track-info .artist {
+            font-weight: 500;
+            color: #2d2d2d;
+            font-size: 0.9rem;
+            padding-left: 2px;
+        }
+
+        /* stats (duración, etc) */
+        .track-stats {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0 8px;
+            border-top: 2px solid #0a0a0a;
+            border-bottom: 2px solid #0a0a0a;
+            margin: 8px 0 18px;
+        }
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+        .stat span {
+            background: #0a0a0a;
+            color: white;
+            font-weight: 700;
+            padding: 2px 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Reproductor cuadrado */
+        .audio-wrapper {
+            margin-top: auto;
+        }
+        audio {
+            width: 100%;
+            height: 48px;
+            border: 2px solid #0a0a0a;
+            border-radius: 0;
+            background: #f5f5f5;
+        }
+        /* personalización webkit (manteniendo bordes duros) */
+        audio::-webkit-media-controls-panel {
+            background: #f5f5f5;
+            border-radius: 0;
+        }
+        audio::-webkit-media-controls-play-button {
+            background: #0a0a0a;
+            border-radius: 0;
+        }
+        audio::-webkit-media-controls-timeline,
+        audio::-webkit-media-controls-volume-slider {
+            border-radius: 0;
+            border: 1px solid #0a0a0a;
+            background: #ddd;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            margin-top: 48px;
+            padding-top: 28px;
+            border-top: 3px solid #0a0a0a;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 25px;
+            color: #0a0a0a;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            min-height: 20px;
+        }
+
+        /* responsive impecable */
+        @media (max-width: 750px) {
+            .player { padding: 24px; }
+            .header { flex-direction: column; text-align: center; }
+            .info h1 { font-size: 2.5rem; border-left: none; border-top: 4px solid #0a0a0a; padding-left: 0; }
+            .footer { justify-content: center; }
+        }
+        @media (max-width: 500px) {
+            .track-grid { grid-template-columns: 1fr; }
+        }
+
+        .boton-volver {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px; /* Ajustado para mejor proporción */
+            text-decoration: none;
+            border-radius: 10px;
+            display: inline-block; /* Para que el padding funcione correctamente */
+            margin-bottom: 20px; /* Espacio antes del header */
+            border: 2px solid #0a0a0a; /* Integrado con el estilo cuadrado */
+            font-weight: 600;
+            transition: 0.1s ease;
+        }
+        .boton-volver:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player">
+        <!-- Esquinas decorativas (cuadradas) -->
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <a href="principalmusicaescucha.html" class="boton-volver">← Volver atrás</a>
+
+        <!-- ENCABEZADO con info real del álbum -->
+        <div class="header">
+            <div class="cover">
+                <!-- Portada abstracta tecnológica -->
+                <img src="parte0foto.jpg" alt="abstract cover">
+            </div>
+            <div class="info">
+                <h1>Escucha la musica</h1>
+            </div>
+        </div>
+
+        <!-- PARRILLA DE TRACKS (20 pistas) -->
+        <div class="track-grid">
+            <!-- Track 1 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte1foto.png" alt="luz de red">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 1</h3>
+                    <div class="artist">Luz de la red</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte1.mp3" type="audio/mpeg">
+                        tu navegador no soporta audio
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 2 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte2foto.png" alt="ansiedad">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 2</h3>
+                    <div class="artist">Ansiedad + entrada libre</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte2.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 3 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte3foto.png" alt="construir">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 3</h3>
+                    <div class="artist">Construcción / ir adelante</div>
+                </div>
+                
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte3.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+          
+
+            <!-- Track 5 - CORREGIDO (cerrar .track-img) -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte5foto.jpg" alt="destello">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 4</h3>
+                    <div class="artist">Destello interno</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte5.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 6 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte6foto.jpg" alt="sombra">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 5</h3>
+                    <div class="artist">Bajo la sombra</div>
+                </div>
+              
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte6.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 7 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="eco">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 6</h3>
+                    <div class="artist">Eco de bloque</div>
+                </div>
+                
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte7.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 8 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="sintético">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 7</h3>
+                    <div class="artist">Sintético iletrado</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte8.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 9 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="última parte">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 8</h3>
+                    <div class="artist">Cierre cuadrado</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte9.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 10 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="voltaje">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 9</h3>
+                    <div class="artist">Voltaje estático</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte10.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 11 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="texturas">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 10</h3>
+                    <div class="artist">Texturas de hormigón</div>
+                </div>
+              
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte11.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 12 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="destello final">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 11</h3>
+                    <div class="artist">Destello final</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte12.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 13 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="simetría">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 12</h3>
+                    <div class="artist">Simetría rota</div>
+                </div>
+              
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte13.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 14 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="nervio">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 13</h3>
+                    <div class="artist">Nervio óptico</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte14.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 15 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="cristal">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 14</h3>
+                    <div class="artist">Cristal armado 4</div>
+                </div>
+               
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte15.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Track 16 -->
+            <div class="track-card">
+                <div class="track-img">
+                    <img src="parte7foto.jpg" alt="píxel final">
+                </div>
+                <div class="track-info">
+                    <h3>Parte 15</h3>
+                    <div class="artist">Píxel final</div>
+                </div>
+              
+                <div class="audio-wrapper">
+                    <audio controls preload="none">
+                        <source src="musicaparte16.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+     <!-- Track 17 -->
+<div class="track-card">
+
+    <div class="track-img">
+        <img src="parte7foto.jpg" alt="Sintético puro" loading="lazy">
+    </div>
+
+    <div class="track-info">
+        <h3>Parte 16</h3>
+        <p class="artist">Sintético puro</p>
+    </div>
+
+    <div class="track-stats">
+        <span class="stat">⏱️ 0:30</span>
+    </div>
+
+    <div class="audio-wrapper">
+        <audio controls preload="none">
+            <source src="musicaparte17.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio HTML5.
+        </audio>
+    </div>
+
+</div>
+
+
+
+       
+          
+        </div> <!-- fin track-grid -->
+
+        <!-- PIE DE PÁGINA completamente limpio (solo la línea divisoria) -->
+        <div class="footer">
+            <!-- todo el contenido eliminado según petición -->
+        </div>
+    </div>  <!-- fin player -->
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cuadro Comparativo - Fórmula de Préstamo</title>
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:wheat;
+    margin:40px;
+    
+   border-radius: 10px;
+  max-width: 900px;
+  margin: 90px auto;
+}
+
+h1{
+    text-align:center;
+    color:#2c3e50;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th, td{
+    border:1px solid #dcdcdc;
+    padding:12px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f8f9fb;
+}
+
+.simbolo{
+    font-weight:bold;
+    text-align:center;
+    color:#1a5276;
+    font-size:16px;
+}
+
+.ejemplo{
+    color:#1e8449;
+    font-weight:bold;
+}
+.boton {
+    color: white;              /* color del texto */
+    background-color: #3498db; /* color de fondo */
+    padding: 10px 20px;        /* espacio interno */
+    border: 2px solid #2980b9; /* borde */
+    border-radius: 8px;        /* bordes redondeados */
+    text-decoration: none;     /* quita el subrayado */
+    font-weight: bold;
+}
+
+.boton:hover {
+    background-color: #2980b9; /* cambia color al pasar el mouse */
+    border-color: #1f6391;
+}
+</style>
+</head>
+<body>
+
+<h1>Cuadro Comparativo de Variables en la Fórmula de Préstamo</h1>
+
+<table>
+ <a href="toericafinanciero.html" class="boton">Volver atras</a>
+<tr>
+<th>Símbolo</th>
+<th>Nombre Completo</th>
+<th>Significado Técnico</th>
+<th>¿Cómo se obtiene o calcula?</th>
+<th>Unidad o Tipo de Dato</th>
+<th>Representa en la Vida Real</th>
+<th>Ejemplo Práctico</th>
+</tr>
+
+<tr>
+<td class="simbolo">PM</td>
+<td>Pago Mensual (Cuota Fija)</td>
+<td>Monto constante que se paga al final de cada período durante toda la vida del préstamo.</td>
+<td>Resultado final de la fórmula financiera.</td>
+<td>Moneda ($, €, etc.)</td>
+<td>El compromiso mensual que debes pagar al banco.</td>
+<td class="ejemplo">$3,323</td>
+</tr>
+
+<tr>
+<td class="simbolo">P</td>
+<td>Principal o Monto del Préstamo</td>
+<td>Valor presente del dinero recibido.</td>
+<td>Lo establece el contrato o la cantidad solicitada.</td>
+<td>Moneda</td>
+<td>El dinero que recibes para comprar algo (casa, coche, etc.).</td>
+<td class="ejemplo">$100,000</td>
+</tr>
+
+<tr>
+<td class="simbolo">i</td>
+<td>Tasa de Interés Periódica</td>
+<td>Interés que se paga por cada período del préstamo.</td>
+<td>TNA / Número de períodos al año<br>(Ej: 12% / 12 = 1% mensual)</td>
+<td>Número decimal</td>
+<td>El costo o “alquiler” del dinero prestado.</td>
+<td class="ejemplo">0.01 (1% mensual)</td>
+</tr>
+
+<tr>
+<td class="simbolo">n</td>
+<td>Número Total de Períodos</td>
+<td>Total de cuotas necesarias para pagar el préstamo.</td>
+<td>Años × períodos por año<br>(Ej: 3 × 12 = 36)</td>
+<td>Número entero</td>
+<td>Tiempo total que estarás pagando la deuda.</td>
+<td class="ejemplo">36 cuotas</td>
+</tr>
+
+<tr>
+<td class="simbolo">(1 + i)<sup>n</sup></td>
+<td>Factor de Capitalización</td>
+<td>Proyecta cuánto crecerá el dinero con interés compuesto.</td>
+<td>Elevar (1 + i) a la potencia n.</td>
+<td>Número decimal &gt; 1</td>
+<td>Representa el efecto del interés compuesto.</td>
+<td class="ejemplo">1.43077</td>
+</tr>
+
+<tr>
+<td class="simbolo">i(1+i)<sup>n</sup></td>
+<td>Numerador del Factor</td>
+<td>Representa el crecimiento del interés aplicado al valor futuro.</td>
+<td>Multiplicar i por (1+i)<sup>n</sup>.</td>
+<td>Número decimal</td>
+<td>Proporción del interés respecto al valor futuro.</td>
+<td class="ejemplo">0.0143077</td>
+</tr>
+
+<tr>
+<td class="simbolo">(1+i)<sup>n</sup> - 1</td>
+<td>Denominador del Factor</td>
+<td>Exceso de valor generado por intereses.</td>
+<td>Restar 1 al factor de capitalización.</td>
+<td>Número decimal</td>
+<td>Ganancia total generada por intereses.</td>
+<td class="ejemplo">0.43077</td>
+</tr>
+
+<tr>
+<td class="simbolo">[ i(1+i)<sup>n</sup> ] / [ (1+i)<sup>n</sup> − 1 ]</td>
+<td>Factor de Amortización</td>
+<td>Convierte un monto presente en pagos iguales futuros.</td>
+<td>División del numerador entre el denominador.</td>
+<td>Número decimal &lt; 1</td>
+<td>La “receta” que calcula la cuota exacta del préstamo.</td>
+<td class="ejemplo">0.03323</td>
+</tr>
+
+</table>
+
+</body>
+</html>
